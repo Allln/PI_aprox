@@ -2,32 +2,36 @@
 from numpy import random
 import numpy as np
 import matplotlib.pyplot as plt
+import time
 
-N = 10000
+cap = 10
 
-circlex = []
-circley = []
+for i in range(0,8):
+    start_time = time.time()
+    circlex = []
+    circley = []
 
-squarex = []
-squarey = []
+    squarex = []
+    squarey = []
 
-i = 1
+    for i in range(0, cap):
+        x = random.uniform(-1, 1)
+        y = random.uniform(-1, 1)
+        if(x**2 + y**2 >= 1):
+            squarex.append(x)
+            squarey.append(y)
+        else:
+            circlex.append(x)
+            circley.append(y)
 
-for i in range(0,N):
-    x = random.uniform(-1,1)
-    y = random.uniform(-1,1)
-    if(x**2 + y**2 <= 1):
-        circlex.append(x)
-        circley.append(y)
-    else:
-        squarex.append(x)
-        squarey.append(y)
-        
-pi = 4*len(circlex)/float(N)
+    pi = (4*len(circlex))/float(cap)
+    print("Computational time", "--- %s seconds ---" % (time.time() - start_time))
 
-print("numpy PI is: ", np.pi)
-print("our aprox PI is: ", pi)
-        
+    print("numpy PI is: ", np.pi)
+    print("our aprox PI is: ", pi, "for", cap, "samples")
+    print("")
+    cap = cap*10
+    
 plt.plot(circlex,circley,"g.")
 plt.plot(squarex,squarey,"y.")
 plt.grid()
