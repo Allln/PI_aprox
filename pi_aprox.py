@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import time
 
 cap = 10
-
-for i in range(0,8):
+ten_pow = 6
+for i in range(0,ten_pow):
     start_time = time.time()
     circlex = []
     circley = []
